@@ -1,40 +1,84 @@
-# Welcome to Remix!
+# Welcome to Dreamers!
 
-- 📖 [Remix docs](https://remix.run/docs)
+- This is a shareholders registration and share information management app. Below is the file structure of this app.
 
-## Development
 
-Run the dev server:
+## node_modules
 
-```sh
-npm run dev
-```
+Automatically generated folder containing all external libraries and dependencies used in the project. Not meant to be edited.
 
-## Deployment
+## public
 
-First, build your app for production:
+Contains static assets like images, fonts, and other files that are served directly without processing. Available at the root URL (e.g. /logo.png)
 
-```sh
-npm run build
-```
+## .eslint.cjs
 
-Then run the app in production mode:
+Configuration file for ESLint, which defines rules and settings for code quality and style checking. Uses commonJS format.
 
-```sh
-npm start
-```
+## .gitignore
 
-Now you'll need to pick a host to deploy it to.
+Lists files and folders Git should ignore (not track), such as node_modules/, build outputs, and environment files.
 
-### DIY
+## postcss.config.js
 
-If you're familiar with deploying Node applications, the built-in Remix app server is production-ready.
+Configuration file for POSTCSS, used to transform CSS (e.g. autoPrefixing, minification) through plugins during build process.
 
-Make sure to deploy the output of `npm run build`
+## components.json
 
-- `build/server`
-- `build/client`
+Configuration file for shadcn/ui that defines styling, Tailwind setup, file paths, and aliases used when generating and managing UI components.
 
-## Styling
+## package-lock.json
 
-This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever css framework you prefer. See the [Vite docs on css](https://vitejs.dev/guide/features.html#css) for more information.
+An automatically generated file that records the exact versions of all installed Node.js packages(and their dependencies) used in the project. It ensures consistent installs across different environments.
+
+## package.json
+
+Defines the project's metadata, scripts and dependencies. It lists the required packages, their versions and scripts for running, building or testing the app. Acts as the main configuration file for node.js projects.
+
+## tsconfig.json
+
+Configuration file for typescript that specifies compiler options, file paths and rules for how typescript should process and compile the code. Helps ensure type safety and consistent development behavior.
+
+## README.md
+
+Main documentation file for the project. Provides and overview, setup instructions and usage guidelines. Useful for developers to understand and contribute to the project.
+
+## tailwind.config.ts
+
+Configuration file for tailwind CSS. Defines custom themes, colors, breakpoints and plugin settings. Written in Typescript for better type safety and editor support.
+
+## vite.config.ts
+
+Configuration file for vite, used as a development server and build tool instead of the default Remix compiler. Defines settings like plugins, aliases and environment variables. Chosen for its faster builds, better hot reloading and modern developer experience.
+
+
+## app
+
+The core application folder in the project. Contains routes, components, styles, and other logic. Follows Remix's file-based routing system, where files inside app/routes define the pages and API endpoints of the app. Contents of the app/ are as follows:
+
+
+### components
+
+A directory containing ui/ directory and custom built components.
+ui/ directory contains reusable ui components added from shadcn/ui and used throughout the app.
+All custom built components which are not API endpoints or routes are organized here. It mainly contains layout parts from page-specific code.
+
+### lib
+
+Contains utility functions, helper modules and share logic that supports the app's features. Data fetching, formatting, validations and other reusable non-UI logic are organized here.
+
+### routes
+
+Contains route files that define the app's pages and API endpoints. Each file corresponds to a URL path based on Remix's file-based routing system. Routes handle loading data, rendering UI, and server-side actions.
+
+### tailwind.css
+
+The main CSS file that includes Tailwind's base, components and utilities layers. Custom styles and overrides are added here. Imported into the app to apply tailwind CSS styling globally.
+
+### entry.client.tsx
+
+The client-side entry point for a remix application. It initializes the react app in the browser and handles client-side hydration and rendering. Required for enabling interactivity after server-side rendering.
+
+### entry.server.tsx
+
+The server-side entry point for a Remix application. It defines how the app is rendered on the server. Responsible for generating the initial HTML sent to the client.
