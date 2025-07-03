@@ -82,3 +82,11 @@ The client-side entry point for a remix application. It initializes the react ap
 ### entry.server.tsx
 
 The server-side entry point for a Remix application. It defines how the app is rendered on the server. Responsible for generating the initial HTML sent to the client.
+
+---
+
+## Internal Developer Guidelines
+
+- [Database Rules](./docs/db-rules.md)
+- [Backend Rules](./docs/backend-rules.md)
+- [Frontend Rules](./docs/frontend-rules.md)
