@@ -16,7 +16,7 @@ export const statementSchema = z.object({
   deposit_amount: z.number().refine((n) => /^\d+\.\d{2}$/.test(n.toFixed(2)), { message: 'Must be a valid decimal with 2 places' }),
   bank_name: z.string().min(1).max(100),
   account_type: z.enum(['checking', 'savings', 'business']).default('checking'),
-  comment: z.string().max(255).optional(),
+  comment: z.string().max(50).optional(),
   version: z.number().int().default(1),
   created_at: z.string().optional(),
   updated_at: z.string().optional()
