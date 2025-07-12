@@ -39,7 +39,7 @@ export async function createStatement(statement: Omit<Statement, "id"|"version"|
   return prisma.$queryRaw`
     INSERT INTO statements (financial_note_id, description, amount, status, version, created_at, updated_at)
     VALUES (
-      ${statement.financial_note_id},
+      ${statement.fn_id},
       ${statement.description},
       ${amount},
       ${statement.status},
