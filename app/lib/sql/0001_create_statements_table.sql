@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS statements (
   deposit_amount DECIMAL(10,2) NOT NULL,
   bank_name VARCHAR(100) NOT NULL,
   account_type ENUM('checking', 'savings', 'business') DEFAULT 'checking',
-  comment VARCHAR(255),
+  comment VARCHAR(50),
   version INT NOT NULL DEFAULT 1,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
