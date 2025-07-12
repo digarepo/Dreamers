@@ -1,6 +1,6 @@
 -- dreamers_db.statements definition
 
-CREATE TABLE IF NOT EXISTS `statements` (
+CREATE TABLE`statements` (
   `id` INT AUTO_INCREMENT PRIMARY KEY,
   `fn_id` INT NOT NULL COMMENT 'Financial note reference',
   `dp_id` VARCHAR(20) NOT NULL UNIQUE COMMENT 'External deposit ID',
