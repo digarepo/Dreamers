@@ -29,12 +29,18 @@ model FinancialNote {
   statements   Statements[]
 }
 
+enum Status {
+  pending
+  approved
+  rejected
+}
+
 model Statements {
   id               Int      @id @default(autoincrement())
   financial_note_id Int
   description      String   @db.VarChar(255)
   amount           Decimal  @db.Decimal(10,2)
-  status           String   @default("pending") @db.Enum("pending", "approved", "rejected")
+  status           Status   @default(pending)
   version          Int      @default(1)
   created_at       DateTime @default(now())
   updated_at       DateTime @default(now()) @updatedAt

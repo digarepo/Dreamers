@@ -22,29 +22,33 @@ export async function loader({ request }: LoaderFunctionArgs) {
       success: false, 
       error: "Failed to fetch statements",
       details: error instanceof Error ? error.message : String(error)
-    }, { status: 500 }) as ApiResponse<Statement[]>;
+    }, { status: 500 }) as unknown as ApiResponse<Statement[]>;
   }
 }
 
+import { logError } from "~/lib/logger.server";
+
 export async function action({ request }: ActionFunctionArgs) {
-  const formData = await request.formData();
-  const rawData = Object.fromEntries(formData);
-  
   try {
-    const validated = statementSchema.parse({
+    const formData = await request.formData();
+    const rawData = Object.fromEntries(formData);
+    // Convert numeric fields and ensure types match Zod/DB
+    const data = {
       ...rawData,
-      financial_note_id: Number(rawData.financial_note_id),
-      amount: Number(rawData.amount)
-    });
-    
+      fn_id: Number(rawData.fn_id),
+      deposit_amount: Number(rawData.deposit_amount),
+      version: rawData.version ? Number(rawData.version) : 1,
+    };
+    const validated = statementSchema.parse(data);
     const result = await createStatement(validated);
     return json<ApiResponse<Statement>>({ success: true, data: result });
   } catch (error) {
+    logError(error, "action/index");
     return json({ 
       success: false,
       error: "Validation or server error",
       details: error instanceof Error ? error.message : String(error)
-    }, { status: 400 }) as ApiResponse<Statement>;
+    }, { status: 400 }) as unknown as ApiResponse<Statement>;
   }
 }
 

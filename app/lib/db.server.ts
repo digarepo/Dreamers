@@ -17,3 +17,12 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 export { prisma }
+
+// Query helper for raw SQL
+export async function query(sql: string, params?: any[]) {
+  if (params && params.length > 0) {
+    return prisma.$queryRawUnsafe(sql, ...params);
+  } else {
+    return prisma.$queryRawUnsafe(sql);
+  }
+}
